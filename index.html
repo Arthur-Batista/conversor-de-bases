@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Conversor de Bases</title>
+    <style>
+      /* Estilos gerais */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f2f2f2;
+      }
+
+      h1 {
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 30px;
+      }
+
+      /* Estilos para o formulário */
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 30px;
+      }
+
+      label {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+
+      input[type="text"] {
+        margin-top: 5px;
+        margin-bottom: 20px;
+        padding: 10px;
+        width: 250px;
+        text-align: center;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+      }
+
+      input[type="button"] {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        padding: 10px 20px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+      }
+
+      input[type="button"]:hover {
+        background-color: #0062cc;
+      }
+
+      #resultado {
+        margin-top: 30px;
+        font-size: 20px;
+        text-align: center;
+        color: #28a745;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Conversor de Bases</h1>
+    <form>
+      <label for="decimal">Decimal:</label>
+      <input type="text" id="decimal" placeholder="Digite um valor decimal" />
+
+      <label for="binario">Binário:</label>
+      <input type="text" id="binario" placeholder="Digite um valor binário" />
+
+      <label for="octal">Octal:</label>
+      <input type="text" id="octal" placeholder="Digite um valor octal" />
+
+      <label for="hexadecimal">Hexadecimal:</label>
+      <input
+        type="text"
+        id="hexadecimal"
+        placeholder="Digite um valor hexadecimal"
+      />
+
+      <input type="button" value="Converter" onclick="converterBases()" />
+
+      <div id="resultado"></div>
+    </form>
+
+    <script>
+      function converterBases() {
+        // Obtém os valores dos campos de entrada
+        const decimal = document.getElementById("decimal").value;
+        const binario = document.getElementById("binario").value;
+        const octal = document.getElementById("octal").value;
+        const hexadecimal = document.getElementById("hexadecimal").value;
+
+        // Verifica qual campo está preenchido e converte para as outras bases
+        if (decimal !== "") {
+          const valorDecimal = parseInt(decimal, 10);
+
+          document.getElementById("binario").value = valorDecimal.toString(2);
+          document.getElementById("octal").value = valorDecimal.toString(8);
+          document.getElementById("hexadecimal").value = valorDecimal.toString(
+            16
+          );
+        } else if (binario !== "") {
+          const valorBinario = parseInt(binario, 2);
+
+          document.getElementById("decimal").value = valorBinario.toString(10);
+          document.getElementById("octal").value = valorBinario.toString(8);
+          document.getElementById("hexadecimal").value = valorBinario.toString(
+            16
+          );
+        } else if (octal !== "") {
+          const valorOctal = parseInt(octal, 8);
+
+          document.getElementById("decimal").value = valorOctal.toString(10);
+          document.getElementById("binario").value = valorOctal.toString(2);
+          document.getElementById("hexadecimal").value = valorOctal.toString(
+            16
+          );
+        } else if (hexadecimal !== "") {
+          const valorHexadecimal = parseInt(hexadecimal, 16);
+
+          document.getElementById("decimal").value = valorHexadecimal.toString(
+            10
+          );
+          document.getElementById("binario").value = valorHexadecimal.toString(
+            2
+          );
+          document.getElementById("octal").value = valorHexadecimal.toString(8);
+        }
+
+        // Exibe o resultado da conversão na div de saída
+        const resultado = document.getElementById("resultado");
+        resultado.innerHTML = "Valores convertidos com sucesso!";
+      }
+    </script>
+  </body>
+</html>
